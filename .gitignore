@@ -20,7 +20,8 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 
-# Visual Studio Code
+# Visual Studio Codeç
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -40,3 +41,5 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+package-lock.json
