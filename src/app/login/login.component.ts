@@ -12,5 +12,5 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  value = 'Clear me'
+  
 }
