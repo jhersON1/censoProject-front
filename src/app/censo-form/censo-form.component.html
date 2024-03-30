@@ -1,0 +1,50 @@
+<div class="container">
+  <mat-card *ngFor="let card of cards; let i = index">
+    <mat-card-content>
+      <div class="example-container">
+        <form [formGroup]="getFormGroup(i)">
+          <h2>Crea tu pregunta</h2>
+          <div>
+            <label>Tipo </label>
+            <mat-radio-group formControlName="radioButton">
+              <mat-radio-button value="auto">Normal</mat-radio-button>
+              <mat-radio-button value="always">Selección</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div class="example-form-fields">
+            <mat-form-field>
+              <textarea matInput placeholder="Pregunta" required></textarea>
+            </mat-form-field>
+          </div>
+
+          <div *ngFor="let control of card.dynamicControls; let j = index">
+            <mat-icon>panorama_fish_eye</mat-icon>
+            <mat-form-field class="example-form-field">
+              <mat-label>Option {{ j + 1 }}</mat-label>
+              <input matInput type="text" [formControl]="control">
+              <button matSuffix mat-icon-button aria-label="Clear" (click)="clearOption(i, j)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+            <button mat-icon-button color="warn" (click)="removeOption(i, j)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <br>
+          </div>
+
+          <button mat-fab extended color="white" (click)="addOption(i)" *ngIf="getFormGroup(i).get('radioButton')?.value === 'always'">
+            <mat-icon>add_circle</mat-icon>
+            Add option
+          </button>
+
+        </form>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="warn" (click)="removeCard(i)">Eliminar</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <button class="addQuestion" mat-raised-button (click)="addCard()">Añadir</button>
+</div>
