@@ -1,23 +1,63 @@
 <div class="body-login">
   <div class="form-container">
-    <form class="example-form">
+    <form class ="example-form" [formGroup]="loginForm">
       <div class="form-group">
         <h1 class="main-title" style="text-align: center;">Censo Digital</h1>
       </div>
       <div class="form-group">
         <mat-form-field class="example-full-width">
           <mat-label>Correo</mat-label>
-          <input matInput placeholder="example@gmail.com">
+          <input matInput placeholder="example@gmail.com" type="email"
+          formControlName="mail">
         </mat-form-field>
+        <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+        <div
+        *ngIf="
+          loginForm.get('mail')?.invalid && 
+          (loginForm.get('mail')?.dirty ||
+            loginForm.get('mail')?.touched)
+        "
+      >
+      <div
+                      *ngIf="loginForm.get('mail')?.errors?.['required']"
+                      class="error text-danger"
+                    >
+                      Ingrese su dirección de Correo Electrónico
+                    </div>
+        <div
+          *ngIf="loginForm.get('mail')?.errors?.['email']"
+          class="error text-danger"
+>
+          El Correo Electrónico no es válido
+        </div>
+      </div>
       </div>
       <div class="form-group">
         <mat-form-field class="example-full-width">
           <mat-label>Contraseña</mat-label>
-          <input matInput placeholder="12345678">
+          <input matInput placeholder="12345678" type="password" formControlName="password">
         </mat-form-field>
+        <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+        <div
+        *ngIf="
+          loginForm.get('password')?.invalid &&
+          (loginForm.get('password')?.dirty ||
+            loginForm.get('password')?.touched)
+        "
+      >
+        <div
+          *ngIf="loginForm.get('password')?.errors?.['required']"
+          class="error text-danger"
+>
+          Ingrese su Contraseña
+        </div>
+      </div>
+
       </div>
       <div class="button-container">
-        <button class="styled-button">Iniciar Sesión</button>
+        <button class="styled-button" (click)="validarForm()" type="submit"
+        [disabled]="!loginForm.valid"
+        [ngClass]="{'disabled-button': !loginForm.valid}">Iniciar Sesión</button>
       </div>
     </form>
     <div class="link-register">
