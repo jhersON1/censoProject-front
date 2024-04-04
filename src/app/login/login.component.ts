@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {CommonModule} from '@angular/common';
+import { Component } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
