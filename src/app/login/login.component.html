@@ -10,7 +10,7 @@
           <input matInput placeholder="example@gmail.com" type="email"
           formControlName="mail">
         </mat-form-field>
-        <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+
         <div
         *ngIf="
           loginForm.get('mail')?.invalid && 
@@ -37,7 +37,7 @@
           <mat-label>Contraseña</mat-label>
           <input matInput placeholder="12345678" type="password" formControlName="password">
         </mat-form-field>
-        <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+        
         <div
         *ngIf="
           loginForm.get('password')?.invalid &&

@@ -3,7 +3,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent {
     ]),
     password: new FormControl('', [Validators.required]),
   });
-  validarForm(){ console.log("cualqueir")
+  validarForm(){
 
 }
 }
