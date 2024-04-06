@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -35,6 +35,10 @@ export class RegisterComponent {
       Validators.required, 
       Validators.minLength(4),
     ]),
+    ci: new FormControl("", [
+      Validators.required,
+      Validators.minLength(7),
+    ]),
     email: new FormControl("",[
       Validators.required, 
       Validators.email,
@@ -45,7 +49,11 @@ export class RegisterComponent {
       Validators.minLength(6), 
       Validators.maxLength(15),
     ]),
-    confirmPassword: new FormControl("", )
+    confirmPassword: new FormControl("", ),
+    adminPassword: new FormControl("",[
+      Validators.required,
+      Validators.minLength(8)
+    ])
   });
 
   hidePassword = true;
@@ -56,8 +64,13 @@ export class RegisterComponent {
   }
 
   registerSubmited(){
-    if((this.Password.value == this.ConfirmPassword.value) && this.registerForm.valid){
+    if(this.Password.value == this.ConfirmPassword.value){
       this.repeatPass = 'none';
+      if (this.registerForm.valid){
+        this.repeatPass = 'none';
+      }else{
+        this.registerForm.markAllAsTouched();  
+      }
     }else{
       this.repeatPass = 'inline';
       this.registerForm.markAllAsTouched();
@@ -79,6 +92,11 @@ export class RegisterComponent {
   get ConfirmPassword(): FormControl{
     return this.registerForm.get("confirmPassword") as FormControl;
   }
+  get Ci(): FormControl{
+    return this.registerForm.get("ci") as FormControl;
+  }
+  get AdminPassword(): FormControl{
+    return this.registerForm.get("adminPassword") as FormControl;
+  }
   
-
 }

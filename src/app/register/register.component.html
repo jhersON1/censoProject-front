@@ -34,11 +34,24 @@
                 </div>
             </div>
             <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nro de carnet de identidad</mat-label>
+                    <input matInput placeholder="" class="form-control" id="ci" formControlName="ci">
+                </mat-form-field>
+                <div class="form-text text-danger" *ngIf="Ci.errors?.['required'] &&
+                    LastName.touched">
+                    Ingrese su nro de ci
+                </div>
+                <div class="form-text text-danger" *ngIf="Ci.errors?.['minlength'] &&
+                    (LastName.touched)">
+                    Complete su nro de ci
+                </div>
+            </div>
+            <div class="form-group">
                 <mat-form-field>
                     <mat-label>Ingresa tu correo</mat-label>
                     <input matInput placeholder="pat@example.com" class="form-control" id="email"
                         formControlName="email">
-
                 </mat-form-field>
                 <div class="form-text text-danger" *ngIf="Email.errors?.['required'] &&
                     Email.touched">
@@ -86,6 +99,20 @@
                 </mat-form-field>
                 <div class="error text-danger" [ngStyle]="{'display': repeatPass}">
                     Confirmacion de contraseña no valida
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Contraseña de administrador</mat-label>
+                    <input matInput placeholder="" class="form-control" id="adminPassword" formControlName="adminPassword">
+                </mat-form-field>
+                <div class="form-text text-danger" *ngIf="AdminPassword.errors?.['required'] &&
+                    AdminPassword.touched">
+                    Ingrese contraseña de administrador
+                </div>
+                <div class="form-text text-danger" *ngIf="AdminPassword.errors?.['minlength'] &&
+                    (AdminPassword.touched)">
+                    La contraseña es de 8 caracteres
                 </div>
             </div>
             <div class="button-container">
