@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
@@ -15,7 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     MatIconModule,
     CommonModule,
-    HttpClientModule, 
     ReactiveFormsModule
   ],
   templateUrl: './register.component.html',
@@ -59,7 +57,7 @@ export class RegisterComponent {
   hidePassword = true;
   hideConfirmPassword = true;
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder){
     
   }
 
