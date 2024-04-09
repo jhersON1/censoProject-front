@@ -1,0 +1,126 @@
+<div class="body-register">
+    <div class="form-container">
+        <form class="example-form" [formGroup]="registerForm">
+            <div class="form-group">
+                <h1 class="main-title" style="text-align: center;">Censo Digital</h1>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput placeholder="" class="form-control" id="name" formControlName="name">
+                </mat-form-field>
+                <div class="form-text text-danger" *ngIf="Name.errors?.['required'] &&
+                    Name.touched">
+                    Nombre obligatorio
+                </div>
+                <div class="form-text text-danger" *ngIf="Name.errors?.['minlength'] &&
+                    (Name.touched)">
+                    Nombre debe tener al menos 4 caracteres
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput placeholder="" class="form-control" id="lastName" formControlName="lastName">
+
+                </mat-form-field>
+                <div class="form-text text-danger" *ngIf="LastName.errors?.['required'] &&
+                    LastName.touched">
+                    Ingrese sus apellidos
+                </div>
+                <div class="form-text text-danger" *ngIf="LastName.errors?.['minlength'] &&
+                    (LastName.touched)">
+                    Apellidos completos
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nro de carnet de identidad</mat-label>
+                    <input matInput placeholder="" class="form-control" id="ci" formControlName="ci">
+                </mat-form-field>
+                <div class="form-text text-danger" *ngIf="Ci.errors?.['required'] &&
+                    LastName.touched">
+                    Ingrese su nro de ci
+                </div>
+                <div class="form-text text-danger" *ngIf="Ci.errors?.['minlength'] &&
+                    (LastName.touched)">
+                    Complete su nro de ci
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Ingresa tu correo</mat-label>
+                    <input matInput placeholder="pat@example.com" class="form-control" id="email"
+                        formControlName="email">
+                </mat-form-field>
+                <div class="form-text text-danger" *ngIf="Email.errors?.['required'] &&
+                    Email.touched">
+                    Ingrese un correo electronico
+                </div>
+                <div class="form-text text-danger" *ngIf="Email.errors?.['required'] &&
+                    (Email.touched && Email.dirty)">
+                    Correo electronico es obligatorio
+                </div>
+                <div class="form-text text-danger" *ngIf="Email.errors?.['email'] &&
+                    (Email.touched && Email.dirty)">
+                    Correo electronico invalido
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" class="form-control" id="password"
+                        formControlName="password">
+
+                    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div class="form-text text-danger" *ngIf="Password.errors?.['required'] &&
+                    (Password.touched)">
+                    Contraseña es requerida
+                </div>
+                <div class="form-text text-danger" *ngIf="Password.errors?.['minlength'] || Password.errors?.['maxlength'] &&
+                    (Password.touched)">
+                    La contraseña debe tener al menos 6 y un máximo de 15 caracteres
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Confirmar contraseña</mat-label>
+                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" class="form-control"
+                        id="confirmPassword" formControlName="confirmPassword">
+
+                    <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+                        <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div class="error text-danger" [ngStyle]="{'display': repeatPass}">
+                    Confirmacion de contraseña no valida
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Contraseña de administrador</mat-label>
+                    <input matInput placeholder="" class="form-control" id="adminPassword" formControlName="adminPassword">
+                </mat-form-field>
+                <div class="form-text text-danger" *ngIf="AdminPassword.errors?.['required'] &&
+                    AdminPassword.touched">
+                    Ingrese contraseña de administrador
+                </div>
+                <div class="form-text text-danger" *ngIf="AdminPassword.errors?.['minlength'] &&
+                    (AdminPassword.touched)">
+                    La contraseña es de 8 caracteres
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="styled-button" (click)="registerSubmited()">Registrarse</button>
+            </div>
+        </form>
+        <div class="link-register">
+            <a href="#">¿Ya tienes cuenta? Inicia Sesion</a>
+        </div>
+    </div>
+</div>
