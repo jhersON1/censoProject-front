@@ -1,0 +1,346 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "usuarios": [
+    {
+      "id": "3",
+      "name": "Michael Johnson",
+      "email": "michaeljohnson@example.com",
+      "role": "user",
+      "ci": "98765432"
+    },
+    {
+      "id": "4",
+      "name": "Emily Davis",
+      "email": "emilydavis@example.com",
+      "role": "user",
+      "ci": "23456789"
+    },
+    {
+      "id": "5",
+      "name": "David Wilson",
+      "email": "davidwilson@example.com",
+      "role": "admin",
+      "ci": "98765432"
+    },
+    {
+      "id": "6",
+      "name": "Sarah Brown",
+      "email": "sarahbrown@example.com",
+      "role": "user",
+      "ci": "34567890"
+    },
+    {
+      "id": "7",
+      "name": "Matthew Taylor",
+      "email": "matthewtaylor@example.com",
+      "role": "user",
+      "ci": "87654321"
+    },
+    {
+      "id": "8",
+      "name": "Olivia Miller",
+      "email": "oliviamiller@example.com",
+      "role": "admin",
+      "ci": "45678901"
+    },
+    {
+      "id": "9",
+      "name": "Christopher Anderson",
+      "email": "christopheranderson@example.com",
+      "role": "user",
+      "ci": "76543210"
+    },
+    {
+      "id": "10",
+      "name": "Ava Thomas",
+      "email": "avathomas@example.com",
+      "role": "user",
+      "ci": "23456789"
+    },
+    {
+      "id": "11",
+      "name": "Andrew Jackson",
+      "email": "andrewjackson@example.com",
+      "role": "admin",
+      "ci": "54321098"
+    },
+    {
+      "id": "12",
+      "name": "Sophia White",
+      "email": "sophiawhite@example.com",
+      "role": "user",
+      "ci": "65432109"
+    },
+    {
+      "id": "13",
+      "name": "William Harris",
+      "email": "williamharris@example.com",
+      "role": "user",
+      "ci": "34567890"
+    },
+    {
+      "id": "14",
+      "name": "Isabella Clark",
+      "email": "isabellaclark@example.com",
+      "role": "admin",
+      "ci": "43210987"
+    },
+    {
+      "id": "15",
+      "name": "Joseph Rodriguez",
+      "email": "josephrodriguez@example.com",
+      "role": "user",
+      "ci": "56789012"
+    },
+    {
+      "id": "16",
+      "name": "Mia Lewis",
+      "email": "mialewis@example.com",
+      "role": "user",
+      "ci": "87654321"
+    },
+    {
+      "id": "17",
+      "name": "David Lee",
+      "email": "davidlee@example.com",
+      "role": "admin",
+      "ci": "78901234"
+    },
+    {
+      "id": "18",
+      "name": "Abigail Walker",
+      "email": "abigailwalker@example.com",
+      "role": "user",
+      "ci": "89012345"
+    },
+    {
+      "id": "19",
+      "name": "James Green",
+      "email": "jamesgreen@example.com",
+      "role": "user",
+      "ci": "98765432"
+    },
+    {
+      "id": "20",
+      "name": "Elizabeth Hall",
+      "email": "elizabethhall@example.com",
+      "role": "admin",
+      "ci": "12345678"
+    },
+    {
+      "id": "21",
+      "name": "Benjamin Young",
+      "email": "benjaminyoung@example.com",
+      "role": "user",
+      "ci": "23456789"
+    },
+    {
+      "id": "22",
+      "name": "Chloe Baker",
+      "email": "chloebaker@example.com",
+      "role": "user",
+      "ci": "76543210"
+    },
+    {
+      "id": "23",
+      "name": "Daniel King",
+      "email": "danielking@example.com",
+      "role": "admin",
+      "ci": "87654321"
+    },
+    {
+      "id": "24",
+      "name": "Evelyn Wright",
+      "email": "evelynwright@example.com",
+      "role": "user",
+      "ci": "54321098"
+    },
+    {
+      "id": "25",
+      "name": "Victoria Hernandez",
+      "email": "victoriahernandez@example.com",
+      "role": "user",
+      "ci": "65432109"
+    },
+    {
+      "id": "26",
+      "name": "Samuel Nelson",
+      "email": "samuelnelson@example.com",
+      "role": "admin",
+      "ci": "34567890"
+    },
+    {
+      "id": "27",
+      "name": "Grace Adams",
+      "email": "graceadams@example.com",
+      "role": "user",
+      "ci": "43210987"
+    },
+    {
+      "id": "28",
+      "name": "Ryan Perez",
+      "email": "ryanperez@example.com",
+      "role": "user",
+      "ci": "56789012"
+    },
+    {
+      "id": "29",
+      "name": "Lily Gonzalez",
+      "email": "lilygonzalez@example.com",
+      "role": "admin",
+      "ci": "78901234"
+    },
+    {
+      "id": "30",
+      "name": "Nathan Carter",
+      "email": "nathancarter@example.com",
+      "role": "user",
+      "ci": "89012345"
+    },
+    {
+      "id": "31",
+      "name": "Sofia Mitchell",
+      "email": "sofiamitchell@example.com",
+      "role": "user",
+      "ci": "98765432"
+    },
+    {
+      "id": "32",
+      "name": "Christopher Baker",
+      "email": "christopherbaker@example.com",
+      "role": "admin",
+      "ci": "12345678"
+    },
+    {
+      "id": "33",
+      "name": "Avery Wright",
+      "email": "averywright@example.com",
+      "role": "user",
+      "ci": "23456789"
+    },
+    {
+      "id": "34",
+      "name": "Zoey Collins",
+      "email": "zoeycollins@example.com",
+      "role": "user",
+      "ci": "76543210"
+    },
+    {
+      "id": "35",
+      "name": "Jonathan Adams",
+      "email": "jonathanadams@example.com",
+      "role": "admin",
+      "ci": "87654321"
+    },
+    {
+      "id": "36",
+      "name": "Natalie Cox",
+      "email": "nataliecox@example.com",
+      "role": "user",
+      "ci": "54321098"
+    },
+    {
+      "id": "37",
+      "name": "Levi Ramirez",
+      "email": "leviramirez@example.com",
+      "role": "user",
+      "ci": "65432109"
+    },
+    {
+      "id": "38",
+      "name": "Audrey Hughes",
+      "email": "audreyhughes@example.com",
+      "role": "admin",
+      "ci": "34567890"
+    },
+    {
+      "id": "39",
+      "name": "Julian Powell",
+      "email": "julianpowell@example.com",
+      "role": "user",
+      "ci": "43210987"
+    },
+    {
+      "id": "40",
+      "name": "Brooklyn Russell",
+      "email": "brooklynrussell@example.com",
+      "role": "user",
+      "ci": "56789012"
+    },
+    {
+      "id": "41",
+      "name": "Liam Phillips",
+      "email": "liamphillips@example.com",
+      "role": "admin",
+      "ci": "78901234"
+    },
+    {
+      "id": "42",
+      "name": "Harper Bennett",
+      "email": "harperbennett@example.com",
+      "role": "user",
+      "ci": "89012345"
+    },
+    {
+      "id": "43",
+      "name": "Sebastian Gray",
+      "email": "sebastiangray@example.com",
+      "role": "user",
+      "ci": "98765432"
+    },
+    {
+      "id": "44",
+      "name": "Penelope James",
+      "email": "penelopejames@example.com",
+      "role": "admin",
+      "ci": "12345678"
+    },
+    {
+      "id": "45",
+      "name": "Owen Foster",
+      "email": "owenfoster@example.com",
+      "role": "user",
+      "ci": "23456789"
+    },
+    {
+      "id": "46",
+      "name": "Scarlett Morgan",
+      "email": "scarlettmorgan@example.com",
+      "role": "user",
+      "ci": "76543210"
+    },
+    {
+      "id": "47",
+      "name": "Gabriel Coleman",
+      "email": "gabrielcoleman@example.com",
+      "role": "admin",
+      "ci": "87654321"
+    }
+  ]
+}
