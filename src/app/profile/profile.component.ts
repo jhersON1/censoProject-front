@@ -14,13 +14,18 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfileComponent {
   profileForm: FormGroup = new FormGroup({
-    nombre: new FormControl(''),
-    apellido: new FormControl(''),
-    carnet: new FormControl(''), 
-    correo: new FormControl(''),
-    password: new FormControl('')
+    nombre: new FormControl('', Validators.required),
+    apellido: new FormControl('', Validators.required),
+    carnet: new FormControl('', Validators.required), 
+    correo: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required)
   });
 
   
-
+  onSubmit() {
+    if (this.profileForm.valid) {
+      
+      console.log(this.profileForm.value);
+    }
+  }
 }

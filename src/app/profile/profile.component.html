@@ -1,87 +1,103 @@
 <div class="profile-container">
-    <div class="sidebar">
-      <ul class="menu">
-        <li class="menu-item profile-container">
-            <div class="profile-name">
-              <span>Nombre Apellido</span>
-            </div>
-          </li>
+  <div class="sidebar">
+    <ul class="menu">
+      <li class="menu-item profile-container">
+          <div class="profile-name">
+            <span>Nombre Apellido</span>
+          </div>
+        </li>
+        
+      <li class="menu-item">
+        <a href="#">Mi Perfil</a>
+      </li>
+      <li class="menu-item">
+        <a href="#">Notificaciones</a>
+      </li>
+      <li class="menu-item">
+        <a href="#">Configuración</a>
+      </li>
+      <li class="menu-item">
+        <a href="#">Cerrar Sesión</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="profile-edit-container">
+      <h2>Editar Perfil</h2>
+      <form class="profile-form" [formGroup]="profileForm">
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput placeholder="Nombre" formControlName="nombre" required>
+            <mat-error *ngIf="profileForm.get('nombre')?.hasError('required')">
+              El nombre es obligatorio
+            </mat-error>
+          </mat-form-field>
           
-        <li class="menu-item">
-          <a href="#">Mi Perfil</a>
-        </li>
-        <li class="menu-item">
-          <a href="#">Notificaciones</a>
-        </li>
-        <li class="menu-item">
-          <a href="#">Configuración</a>
-        </li>
-        <li class="menu-item">
-          <a href="#">Cerrar Sesión</a>
-        </li>
-      </ul>
-    </div>
-  
-    <div class="main-content">
-      <div class="profile-edit-container">
-        <h2>Editar Perfil</h2>
-        <form class="profile-form" [formGroup]="profileForm">
-          <div class="form-group">
-            <mat-form-field>
-              <mat-label>Nombre</mat-label>
-              <input type="text" matInput placeholder="Nombre" formControlName="nombre" required>
-              
-            </mat-form-field>
-            
-          </div>
-        
-          <div class="form-group">
-            <mat-form-field>
-              <mat-label>Apellido</mat-label>
-              <input type="text" matInput placeholder="apellido" formControlName="apellido" required>
-             
-            </mat-form-field>
-          </div>
-        
-          <div class="form-group">
-            <mat-form-field>
-              <mat-label>Carnet de Identidad</mat-label>
-              <input type="text" matInput placeholder="carnet" formControlName="carnet" required>
-              
-            </mat-form-field>
-          </div>
-        
-          <div class="form-group">
-            <mat-form-field>
-              <mat-label>Correo electrónico</mat-label>
-              <input
-                matInput
-                placeholder="Ingrese su correo electrónico"
-                formControlName="correo"
-                type="email"
-              >
-              
-            </mat-form-field>
-            
-          </div>
-        
-          <div class="form-group">
-            <mat-form-field>
-              <mat-label>Contraseña</mat-label>
-              <input
-                matInput
-                placeholder="Ingrese su contraseña"
-                formControlName="password"
-                type="password"
-              >
-             
-            </mat-form-field>
-          </div>          
-        
-          <button type="submit" class="button-save">Guardar Cambios</button>
-        </form>
-        
-      </div>
+        </div>
+      
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input type="text" matInput placeholder="apellido" formControlName="apellido" required>
+            <mat-error *ngIf="profileForm.get('apellido')?.hasError('required')">
+              El apellido es obligatorio
+            </mat-error>
+          </mat-form-field>
+        </div>
+      
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Carnet de Identidad</mat-label>
+            <input type="text" matInput placeholder="carnet" formControlName="carnet" required>
+            <mat-error *ngIf="profileForm.get('carnet')?.hasError('required')">
+              El carnet es obligatorio
+            </mat-error>
+          </mat-form-field>
+        </div>
+      
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Correo electrónico</mat-label>
+            <input
+              matInput
+              placeholder="Ingrese su correo electrónico"
+              formControlName="correo"
+              type="email"
+            >
+            <mat-error *ngIf="profileForm.get('correo')?.hasError('required')">
+              El correo electrónico es requerido
+            </mat-error>
+            <mat-error *ngIf="profileForm.get('correo')?.hasError('email')">
+              El correo electrónico no es válido
+            </mat-error>
+          </mat-form-field>
+          
+        </div>
+      
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input
+              matInput
+              placeholder="Ingrese su contraseña"
+              formControlName="password"
+              type="password"
+            >
+            <div *ngIf="profileForm.get('password')?.hasError('required')">
+              <mat-error>La contraseña es requerida</mat-error>
+            </div>
+            <div *ngIf="profileForm.get('password')?.hasError('minlength')">
+              <mat-error>La contraseña debe tener al menos 8 caracteres </mat-error>
+            </div>
+          </mat-form-field>
+        </div>          
+      
+        <button type="submit" class="button-save" [disabled]="!profileForm.valid">Guardar Cambios</button>
+      </form>
+      
     </div>
   </div>
-  
+</div>
+
