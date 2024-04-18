@@ -1,0 +1,20 @@
+<div *ngFor="let card of data.cards">
+  <mat-form-field appearance="fill" *ngIf="card.options.length === 0">
+    <mat-label>{{ card.question }}</mat-label>
+    <input matInput placeholder="Respuesta">
+  </mat-form-field>
+
+  <div *ngIf="card.options.length > 0">
+    <label>{{ card.question }}</label>
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button *ngFor="let option of card.options" [value]="option">{{ option }}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+</div>
+
+
+
+
+<div>
+  Current data: {{ data | json }}
+</div>
