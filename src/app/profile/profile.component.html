@@ -2,9 +2,6 @@
     <div class="sidebar">
       <ul class="menu">
         <li class="menu-item profile-container">
-            <div class="profile-image-container">
-              
-            </div>
             <div class="profile-name">
               <span>Nombre Apellido</span>
             </div>
@@ -28,31 +25,62 @@
     <div class="main-content">
       <div class="profile-edit-container">
         <h2>Editar Perfil</h2>
-  
-        <form class="profile-form">
+        <form class="profile-form" [formGroup]="profileForm">
           <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
+            <mat-form-field>
+              <mat-label>Nombre</mat-label>
+              <input type="text" matInput placeholder="Nombre" formControlName="nombre" required>
+              
+            </mat-form-field>
+            
           </div>
+        
           <div class="form-group">
-            <label for="text">Apellido:</label>
-            <input type="text" id="apellido" name="apellido">
+            <mat-form-field>
+              <mat-label>Apellido</mat-label>
+              <input type="text" matInput placeholder="apellido" formControlName="apellido" required>
+             
+            </mat-form-field>
           </div>
+        
           <div class="form-group">
-            <label for="text">Carnet de Identidad:</label>
-            <input type="text" id="carnet" name="carnet">
+            <mat-form-field>
+              <mat-label>Carnet de Identidad</mat-label>
+              <input type="text" matInput placeholder="carnet" formControlName="carnet" required>
+              
+            </mat-form-field>
           </div>
+        
           <div class="form-group">
-            <label for="email">Correo:</label>
-            <input type="email" id="email" name="email">
+            <mat-form-field>
+              <mat-label>Correo electrónico</mat-label>
+              <input
+                matInput
+                placeholder="Ingrese su correo electrónico"
+                formControlName="correo"
+                type="email"
+              >
+              
+            </mat-form-field>
+            
           </div>
+        
           <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="text" id="password" name="password" >
-          </div>
-  
+            <mat-form-field>
+              <mat-label>Contraseña</mat-label>
+              <input
+                matInput
+                placeholder="Ingrese su contraseña"
+                formControlName="password"
+                type="password"
+              >
+             
+            </mat-form-field>
+          </div>          
+        
           <button type="submit" class="button-save">Guardar Cambios</button>
         </form>
+        
       </div>
     </div>
   </div>
