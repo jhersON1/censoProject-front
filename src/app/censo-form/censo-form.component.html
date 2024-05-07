@@ -1,50 +1,52 @@
 <div class="container">
-  <mat-card *ngFor="let card of cards; let i = index">
-    <mat-card-content>
-      <div class="example-container">
-        <form [formGroup]="getFormGroup(i)">
-          <h2>Crea tu pregunta</h2>
-          <div>
-            <label>Tipo </label>
-            <mat-radio-group formControlName="radioButton">
-              <mat-radio-button value="auto">Normal</mat-radio-button>
-              <mat-radio-button value="always">Selección</mat-radio-button>
-            </mat-radio-group>
-          </div>
+  <form [formGroup]="form">
+    <ng-container formArrayName="cards">
+      <mat-card *ngFor="let card of cards.controls; let i = index" [formGroup]="getCardFormGroup(i)">
+        <mat-card-content>
+          <div class="example-container">
+            <h2>Crea tu pregunta</h2>
+            <div>
+              <label>Tipo </label>
+              <mat-radio-group formControlName="radioButton">
+                <mat-radio-button value="auto">Normal</mat-radio-button>
+                <mat-radio-button value="always">Selección</mat-radio-button>
+              </mat-radio-group>
+            </div>
 
-          <div class="example-form-fields">
-            <mat-form-field>
-              <textarea matInput placeholder="Pregunta" required></textarea>
-            </mat-form-field>
-          </div>
+            <!-- Campo para escribir la pregunta -->
+            <div class="example-form-fields">
+              <mat-form-field>
+                <textarea matInput placeholder="Escribe tu pregunta aquí" formControlName="question" required></textarea>
+              </mat-form-field>
+            </div>
 
-          <div *ngFor="let control of card.dynamicControls; let j = index">
-            <mat-icon>panorama_fish_eye</mat-icon>
-            <mat-form-field class="example-form-field">
-              <mat-label>Option {{ j + 1 }}</mat-label>
-              <input matInput type="text" [formControl]="control">
-              <button matSuffix mat-icon-button aria-label="Clear" (click)="clearOption(i, j)">
-                <mat-icon>close</mat-icon>
+            <div formArrayName="options" *ngFor="let option of getOptions(card).controls; let j = index">
+              <mat-form-field class="example-form-field">
+                <mat-label>Opción {{ j + 1 }}</mat-label>
+                <input matInput type="text" [formControl]="getFormControl(getOptions(card), j)">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="option.reset('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+              <button mat-icon-button color="warn" (click)="removeOption(i, j)">
+                <mat-icon>delete</mat-icon>
               </button>
-            </mat-form-field>
-            <button mat-icon-button color="warn" (click)="removeOption(i, j)">
-              <mat-icon>delete</mat-icon>
+              <br>
+            </div>
+
+            <button mat-fab extended color="primary" (click)="addOption(i)" *ngIf="card.get('radioButton')!.value === 'always'">
+              <mat-icon>add_circle</mat-icon>
+              Añadir opción
             </button>
-            <br>
           </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="warn" (click)="removeCard(i)">Eliminar</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+    <button mat-raised-button color="primary" (click)="submitForm()">Enviar</button>
+  </form>
 
-          <button mat-fab extended color="white" (click)="addOption(i)" *ngIf="getFormGroup(i).get('radioButton')?.value === 'always'">
-            <mat-icon>add_circle</mat-icon>
-            Add option
-          </button>
-
-        </form>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button color="warn" (click)="removeCard(i)">Eliminar</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <button class="addQuestion" mat-raised-button (click)="addCard()">Añadir</button>
+  <button class="addQuestion" mat-raised-button (click)="addCard()">Añadir pregunta</button>
 </div>

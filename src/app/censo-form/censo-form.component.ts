@@ -5,12 +5,21 @@ import { MatButtonToggle, MatButtonToggleGroup } from "@angular/material/button-
 import { MatIcon } from "@angular/material/icon";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { MatOption, MatSelect } from "@angular/material/select";
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule, Validators
+} from "@angular/forms";
 import { MatRadioButton, MatRadioGroup } from "@angular/material/radio";
 import { MatInputModule } from "@angular/material/input";
 import { MatButton, MatFabButton, MatIconButton } from "@angular/material/button";
 import { NgForOf, NgIf } from "@angular/common";
-import { Subscription } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
+import { CensoFormService } from "../services/censoForm/censo-form.service";
 
 @Component({
   selector: 'app-censo-form',
@@ -44,77 +53,86 @@ import { Subscription } from "rxjs";
 })
 export class CensoFormComponent implements OnInit, OnDestroy {
 
-  public cards: any[] = [];
-  private radioButtonSubscription!: Subscription;
+  form: FormGroup;
+  private destroy$ = new Subject<void>();
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private fb: FormBuilder, private censoFormService: CensoFormService<any>) {
+    this.form = this.fb.group({
+      cards: this.fb.array([])
+    });
+  }
 
   ngOnInit() {
     this.addCard();
   }
 
   ngOnDestroy() {
-    this.cards.forEach(card => {
-      if (card.radioButtonSubscription) {
-        card.radioButtonSubscription.unsubscribe();
-      }
-    });
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
-  getFormGroup(index: number): FormGroup {
-    if (!this.cards[index].formGroup) {
-      this.cards[index].formGroup = this._formBuilder.group({
-        radioButton: ['auto']
-      });
-      this.cards[index].dynamicControls = [];
-      this.cards[index].radioButtonSubscription = this.cards[index].formGroup.get('radioButton')!.valueChanges.subscribe((value: string) => {
-        if (value === 'auto') {
-          this.clearAllOptions(index);
-        }
-      });
-    }
-    return this.cards[index].formGroup;
+  get cards(): FormArray {
+    return this.form.get('cards') as FormArray;
   }
 
   addCard() {
-    this.cards.push({});
+    const cardGroup = this.fb.group({
+      radioButton: ['auto'],
+      question: ['', Validators.required],
+      options: this.fb.array([])
+    });
+
+    cardGroup.get('radioButton')!.valueChanges.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(value => {
+      if (value === 'auto') {
+        this.clearAllOptions(this.cards.length - 1);
+      }
+    });
+
+    this.cards.push(cardGroup);
   }
 
   removeCard(index: number) {
-    this.cards.splice(index, 1);
+    this.cards.removeAt(index);
   }
 
-  addOption(index: number) {
-    const newControl = new FormControl('');
-    this.cards[index].dynamicControls.push(newControl);
-    this.getFormGroup(index).addControl(`option${this.cards[index].dynamicControls.length}`, newControl);
+  addOption(cardIndex: number) {
+    const options = this.cards.at(cardIndex).get('options') as FormArray;
+    options.push(new FormControl(''));
   }
 
   removeOption(cardIndex: number, optionIndex: number) {
-    this.cards[cardIndex].dynamicControls.splice(optionIndex, 1);
-    this.getFormGroup(cardIndex).removeControl(`option${optionIndex + 1}`);
-
-    this.cards[cardIndex].dynamicControls.forEach((control: any, i: number) => {
-      const oldName = `option${i + 2}`;
-      const newName = `option${i + 1}`;
-      if (this.getFormGroup(cardIndex).contains(oldName)) {
-        this.getFormGroup(cardIndex).setControl(newName, control);
-        this.getFormGroup(cardIndex).removeControl(oldName);
-      }
-    });
+    const options = this.cards.at(cardIndex).get('options') as FormArray;
+    options.removeAt(optionIndex);
   }
 
-  clearOption(cardIndex: number, optionIndex: number) {
-    this.cards[cardIndex].dynamicControls[optionIndex].reset('');
+  clearAllOptions(cardIndex: number) {
+    const options = this.cards.at(cardIndex).get('options') as FormArray;
+    while (options.length !== 0) {
+      options.removeAt(0);
+    }
   }
 
-  clearAllOptions(index: number) {
-    this.cards[index].dynamicControls.forEach((control: { reset: (arg0: string) => any; }) => control.reset(''));
-    this.cards[index].dynamicControls = [];
-    Object.keys(this.getFormGroup(index).controls).forEach(key => {
-      if (key.startsWith('option')) {
-        this.getFormGroup(index).removeControl(key);
-      }
-    });
+  // Este método está correcto para obtener FormArrays:
+  getOptions(card: AbstractControl): FormArray {
+    return card.get('options') as FormArray;
+  }
+
+// Asegurando que cuando accedas a una 'card', la trates como FormGroup
+  getCardFormGroup(index: number): FormGroup {
+    return this.cards.at(index) as FormGroup;  // Casting a FormGroup
+  }
+
+  // Método para obtener un FormControl específico de un FormArray
+  getFormControl(formArray: FormArray, index: number): FormControl {
+    return formArray.at(index) as FormControl;
+  }
+
+  submitForm() {
+    if (this.form.valid) {
+      this.censoFormService.setState(this.form.value); // Envía los datos del formulario
+      console.log('Form data submitted:', this.form.value);
+    }
   }
 }
