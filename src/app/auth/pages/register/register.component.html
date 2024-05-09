@@ -36,7 +36,7 @@
             <div class="form-group">
                 <mat-form-field class="example-full-width">
                     <mat-label>Nro de carnet de identidad</mat-label>
-                    <input matInput placeholder="" class="form-control" id="ci" formControlName="ci">
+                    <input matInput placeholder="" class="form-control" id="ci" formControlName="dni">
                 </mat-form-field>
                 <div class="form-text text-danger" *ngIf="Ci.errors?.['required'] &&
                     LastName.touched">
@@ -104,7 +104,7 @@
             <div class="form-group">
                 <mat-form-field class="example-full-width">
                     <mat-label>Contraseña de administrador</mat-label>
-                    <input matInput placeholder="" class="form-control" id="adminPassword" formControlName="adminPassword">
+                    <input matInput placeholder="" class="form-control" id="adminPassword" formControlName="adminCode">
                 </mat-form-field>
                 <div class="form-text text-danger" *ngIf="AdminPassword.errors?.['required'] &&
                     AdminPassword.touched">
@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="button-container">
-                <button class="styled-button" (click)="registerSubmited()">Registrarse</button>
+                <button class="styled-button" (click)="registerSubmitted()">Registrarse</button>
             </div>
         </form>
         <div class="link-register">
