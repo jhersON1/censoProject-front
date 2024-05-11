@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button>
+    <mat-icon>map</mat-icon>
+  </button>
+  <span>CensoProject</span>
+
+  @if (isAuthenticated) {
+    <span class="spacer"></span>
+    <button mat-button>Mis Formularios</button>
+    <button mat-button (click)="goCreateForm()">Crear Fromulario</button>
+    <button mat-button (click)="goUserManagement()">Usuarios</button>
+  }
+
+  <span class="spacer"></span>
+  <button mat-button (click)="goHomePage()">Inicio</button>
+  <button mat-button>Acerca de</button>
+  <button mat-button>Contacto</button>
+
+  @if (isNotAuthenticated) {
+    <button mat-button (click)="goLogin()">Inicio de sesión</button>
+  } @else {
+    <button mat-button>Perfil</button>
+    <button mat-button (click)="logout()">Salir</button>
+  }
+
+</mat-toolbar>

@@ -1,6 +1,6 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { CensoFormComponent } from "./censo-form/censo-form.component";
+import { CensoFormComponent } from "./pages/censo-form/censo-form.component";
 import { GenerateCensoFormComponent } from "./generate-censo-form/generate-censo-form.component";
 import { AuthService } from "./auth/services/auth.service";
 import { AuthStatus } from "./auth/interfaces";
@@ -43,7 +43,7 @@ export class AppComponent {
         return;
 
       case AuthStatus.notAuthenticated:
-        this.#router.navigateByUrl('/auth/login').then( finished => {
+        this.#router.navigateByUrl('/homepage').then( finished => {
           if (!finished) {
             console.error('navigation in app component dont work, not authenticated')
           }

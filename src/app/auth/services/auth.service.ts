@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AuthStatus, CheckTokenResponse, LoginResponse, User } from "../interfaces";
 import { catchError, map, Observable, of, throwError } from "rxjs";
 import { IRegister } from "../interfaces/register";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class AuthService {
 
   private readonly baseUrl: string = environment.apiUrl;
   private http = inject( HttpClient );
+  #router = inject( Router );
 
   private _currentUser = signal<User|null>(null);
   private _authStatus = signal<AuthStatus>( AuthStatus.checking );

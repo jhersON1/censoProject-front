@@ -19,7 +19,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButton, MatFabButton, MatIconButton } from "@angular/material/button";
 import { NgForOf, NgIf } from "@angular/common";
 import { Subject, takeUntil } from "rxjs";
-import { CensoFormService } from "../services/censoForm/censo-form.service";
+import { CensoFormService } from "../../services/censoForm/censo-form.service";
 
 @Component({
   selector: 'app-censo-form',
