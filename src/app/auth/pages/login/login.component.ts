@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import Swal from 'sweetalert2'
+import { NabbarComponent } from "../../../shared/navbar/nabbar.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatIconModule,ReactiveFormsModule, CommonModule],
+  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatIconModule, ReactiveFormsModule, CommonModule, NabbarComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -26,7 +27,6 @@ export class LoginComponent {
   });
 
   signUp() {
-    console.log('se ejecuta login')
     const { mail, password } = this.loginForm.value;
     this.authService.login(mail, password)
       .subscribe({

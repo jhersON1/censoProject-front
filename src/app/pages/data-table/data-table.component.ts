@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SelectionModel } from '@angular/cdk/collections';
-import { UsuarioService } from '../services/usuario.service';
+import { UsuarioService } from '../../services/usuario.service';
 import { MatSort } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
@@ -16,18 +16,18 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-data-table',
   standalone: true,
   imports: [
-    MatTableModule, 
-    MatPaginatorModule, 
+    MatTableModule,
+    MatPaginatorModule,
     CommonModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatInputModule,
     MatSort,
     MatIconModule,
     HttpClientModule
-  ], 
+  ],
   providers: [
     UsuarioService
-  ], 
+  ],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.scss'
 })
@@ -48,7 +48,7 @@ export class DataTableComponent implements OnInit, AfterViewInit{
    this.dataSource.paginator = this.paginator;
    this.table.dataSource = this.dataSource;
   }
-  
+
   constructor(private _http: HttpClient, private _usuario: UsuarioService){
 
   }

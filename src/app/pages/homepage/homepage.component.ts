@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NabbarComponent } from '../navbar/nabbar.component';
+import { NabbarComponent } from '../../shared/navbar/nabbar.component';
 import { MatCardModule } from '@angular/material/card';
 
 
