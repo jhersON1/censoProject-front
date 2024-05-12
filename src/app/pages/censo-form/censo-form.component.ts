@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatCard, MatCardActions, MatCardContent } from "@angular/material/card";
 import { MatFormField, MatFormFieldModule, MatLabel } from "@angular/material/form-field";
 import { MatButtonToggle, MatButtonToggleGroup } from "@angular/material/button-toggle";
@@ -20,6 +20,7 @@ import { MatButton, MatFabButton, MatIconButton } from "@angular/material/button
 import { NgForOf, NgIf } from "@angular/common";
 import { Subject, takeUntil } from "rxjs";
 import { CensoFormService } from "../../services/censoForm/censo-form.service";
+import { FormService } from "../../services/form/form.service";
 
 @Component({
   selector: 'app-censo-form',
@@ -55,6 +56,7 @@ export class CensoFormComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   private destroy$ = new Subject<void>();
+  #formService = inject(FormService);
 
   constructor(private fb: FormBuilder, private censoFormService: CensoFormService<any>) {
     this.form = this.fb.group({
@@ -131,8 +133,17 @@ export class CensoFormComponent implements OnInit, OnDestroy {
 
   submitForm() {
     if (this.form.valid) {
-      this.censoFormService.setState(this.form.value); // Envía los datos del formulario
-      console.log('Form data submitted:', this.form.value);
+      // TODO: change 'formulario' to a variable
+      // TODO: get adminId calling to API
+      this.#formService.createForm("formulario", this.form.value, '6ed030b1-3352-4383-8869-3261256d8c54')
+          .subscribe({
+            next: () => {
+              console.log('Form submitted');
+            },
+            error: (er) => {
+              console.error(er);
+            }
+          })
     }
   }
 }
