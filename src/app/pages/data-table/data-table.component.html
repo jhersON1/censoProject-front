@@ -1,3 +1,4 @@
+<app-navbar/>
 <div class="container">
   <h1>Gestión de usuarios</h1>
   <p> ver, crear, editar y eliminar cuentas</p>
@@ -18,9 +19,9 @@
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="ci">
+    <ng-container matColumnDef="dni">
       <th mat-header-cell *matHeaderCellDef> ci </th>
-      <td mat-cell *matCellDef="let element"> {{element.ci}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
     </ng-container>
 
     <ng-container matColumnDef="email">
@@ -28,9 +29,9 @@
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="role">
+    <ng-container matColumnDef="roles">
       <th mat-header-cell *matHeaderCellDef> role </th>
-      <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.roles}} </td>
     </ng-container>
 
     <ng-container matColumnDef="action">
@@ -47,7 +48,7 @@
     </tr>
 
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" 
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons aria-label="Select page of periodic elements">
   </mat-paginator>
 </div>

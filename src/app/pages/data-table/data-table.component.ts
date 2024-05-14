@@ -6,10 +6,12 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SelectionModel } from '@angular/cdk/collections';
-import { UsuarioService } from '../../services/usuario.service';
+import { UserService } from '../../services/user/user.service';
 import { MatSort } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
+import { NabbarComponent } from "../../shared/navbar/nabbar.component";
+import { MatIconButton } from "@angular/material/button";
 
 
 @Component({
@@ -23,10 +25,12 @@ import { HttpClient } from '@angular/common/http';
     MatInputModule,
     MatSort,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    NabbarComponent,
+    MatIconButton
   ],
   providers: [
-    UsuarioService
+    UserService
   ],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.scss'
@@ -35,7 +39,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class DataTableComponent implements OnInit, AfterViewInit{
 
-  displayedColumns: string[] = ['id', 'name','ci', 'email', 'role', 'action'];
+  displayedColumns: string[] = ['id', 'name','dni', 'email', 'roles', 'action'];
   dataSource !: MatTableDataSource<any>;
   selection = new SelectionModel<any>(true, []);
 
@@ -45,13 +49,10 @@ export class DataTableComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
-   this.dataSource.paginator = this.paginator;
    this.table.dataSource = this.dataSource;
   }
 
-  constructor(private _http: HttpClient, private _usuario: UsuarioService){
-
-  }
+  constructor(private userService: UserService){}
 
   ngOnInit(): void {
     this.getUserList();
@@ -60,34 +61,26 @@ export class DataTableComponent implements OnInit, AfterViewInit{
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-
   }
 
   getUserList(){
-    this._usuario.getUserList().subscribe({
-      next: (res) => {
-        console.log(res)
-        this.dataSource = new MatTableDataSource(res);
+    this.userService.getUserList().subscribe({
+      next: data => {
+        console.log(data);
+        this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       },
-      error: console.log
+      error: error => console.log(error)
     })
   }
 
-  deleteUser(id: number) {
-    this._usuario.deleteUser(id).subscribe({
-      next: (res) => {
-        alert('usuario eliminado');
-        this.getUserList();
+  deleteUser(userId: string) {
+    this.userService.deleteUser(userId).subscribe({
+      next: () => {
+        this.dataSource.data = this.dataSource.data.filter(user => user.id !== userId);
       },
-      error: console.log,
+      error: error => console.log(error)
     });
   }
-
-
 }
