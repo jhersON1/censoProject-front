@@ -21,6 +21,7 @@ import { NgForOf, NgIf } from "@angular/common";
 import { Subject, takeUntil } from "rxjs";
 import { CensoFormService } from "../../services/censoForm/censo-form.service";
 import { FormService } from "../../services/form/form.service";
+import { NabbarComponent } from "../../shared/navbar/nabbar.component";
 
 @Component({
   selector: 'app-censo-form',
@@ -47,7 +48,8 @@ import { FormService } from "../../services/form/form.service";
     NgForOf,
     MatButton,
     NgIf,
-    MatCardActions
+    MatCardActions,
+    NabbarComponent
   ],
   templateUrl: './censo-form.component.html',
   styleUrl: './censo-form.component.scss'
