@@ -7,8 +7,10 @@
   @if (isAuthenticated) {
     <span class="spacer"></span>
     <button mat-button>Mis Formularios</button>
-    <button mat-button (click)="goCreateForm()">Crear Fromulario</button>
-    <button mat-button (click)="goUserManagement()">Usuarios</button>
+    @if (isAdmin) {
+      <button mat-button (click)="goCreateForm()">Crear Fromulario</button>
+      <button mat-button (click)="goUserManagement()">Usuarios</button>
+    }
   }
 
   <span class="spacer"></span>
